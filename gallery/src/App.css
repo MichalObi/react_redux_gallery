@@ -16,3 +16,26 @@
 .App-intro {
   font-size: large;
 }
+
+.gallery {
+  display: flex;
+  justify-content: center;
+}
+
+.gallery__item {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  height: 150px;
+  margin: 10px;
+  justify-content: center;
+  border: 1px solid #000;
+}
+
+.gallery__item:hover {
+  cursor: pointer;
+}
+
+.gallery__item:hover span {
+  transform: scale(1.2);
+}

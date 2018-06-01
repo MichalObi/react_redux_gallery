@@ -16,11 +16,13 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">React-redux gallery</h1>
         </header>
-        <div>
-          <h1>Gallery items:</h1>
+
+        <h1>Gallery items:</h1>
+
+        <div className="gallery">
           {this.state.gallery.map(item =>
-            <div key={item.id}>
-              {item.description}
+            <div className="gallery__item" key={item.id} id={item.id}>
+              <span>{item.description}</span>
             </div>
           )}
         </div>
