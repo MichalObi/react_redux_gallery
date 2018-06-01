@@ -1,0 +1,17 @@
+{
+  "name": "react_redux_gallery",
+  "version": "0.0.1",
+  "description": "react-redux gallery with express and mongo",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "author": "Michal Obielecki",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
+}
