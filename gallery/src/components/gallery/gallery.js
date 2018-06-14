@@ -18,6 +18,7 @@ class Gallery extends Component {
         <div className="gallery">
           <GalleryItem gallery={this.state.gallery}/>
         </div>
+        <button>Add new gallery item</button>  
       </div>
     );
   }

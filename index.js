@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 
 app.get('/gallery', (req, res) => {
-  console.log('gallery route here !');
   res.json([
     {id: 1, description: 'test 1'},
     {id: 2, description: 'test 2'},
@@ -11,11 +10,8 @@ app.get('/gallery', (req, res) => {
 });
 
 app.get('/gallery/item/:id', (req, res) => {
-  console.log('gallery item route here');
-  var itemId = req.params.id;
-  res.json([
-    {id: 1, details: 'xxx'},
-  ]);
+  var reqId = req.params.id;
+  res.json({id: reqId, description: 'test desc for ' + reqId});
 });
 
 app.post('create', (req, res) => {

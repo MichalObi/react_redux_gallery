@@ -1,4 +1,9 @@
-.gallery > div {
+.header a {
+  text-decoration: none;
+}
+
+.gallery > div,
+.gallery__item-details {
   display: flex;
   justify-content: center;
 }
@@ -23,4 +28,32 @@
 
 .gallery__item:hover span {
   transform: scale(1.2);
+}
+
+.gallery__item-details {
+  width: 300px;
+  height: 300px;
+  margin: 50px auto;
+}
+
+.gallery__item-details span {
+  font-size: 20px;
+  font-weight: 700;
+  color: red;
+  margin: 0 10px;
+}
+
+.gallery__item-details p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+  color: #000;
+}
+
+.main-header {
+  text-align: center;
+}
+
+.main-header a {
+  text-decoration: none;
 }
