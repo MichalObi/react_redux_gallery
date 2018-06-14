@@ -13,6 +13,10 @@
   border: 1px solid #000;
 }
 
+.gallery__item span {
+  text-align: center;
+}
+
 .gallery__item:hover {
   cursor: pointer;
 }

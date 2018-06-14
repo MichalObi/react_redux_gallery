@@ -10,9 +10,12 @@ app.get('/gallery', (req, res) => {
   ]);
 });
 
-app.get('/item:id', (req, res) => {
+app.get('/gallery/item/:id', (req, res) => {
+  console.log('gallery item route here');
   var itemId = req.params.id;
-  res.send(`gallery item id ${itemId}`);
+  res.json([
+    {id: 1, details: 'xxx'},
+  ]);
 });
 
 app.post('create', (req, res) => {

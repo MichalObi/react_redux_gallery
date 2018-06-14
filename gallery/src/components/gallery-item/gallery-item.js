@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {
+  Link,
+} from 'react-router-dom';
 
 class GalleryItem extends Component {
   render() {
@@ -8,9 +11,11 @@ class GalleryItem extends Component {
           <div>loading ...</div>
         ) : (
           this.props.gallery.map(item =>
-            <div className="gallery__item" key={item.id} id={item.id}>
+            <Link to={{pathname: '/gallery/item/' + item.id }}
+                  className="gallery__item"
+                 key={item.id} id={item.id}>
               <span>{item.description}</span>
-            </div>
+            </Link>
           )
         )}
       </div>
