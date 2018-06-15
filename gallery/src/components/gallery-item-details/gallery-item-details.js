@@ -10,10 +10,19 @@ class GalleryItemDetails extends Component {
   }
 
   removeGalleryItem(id) {
-    var request = new XMLHttpRequest();
-    request.open('DELETE', `/gallery/item/${id}`, true);
-    request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    request.send();
+    fetch(`/gallery/item/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        'charset': 'UTF-8'
+      }
+    })
+    .then(res => res.json())
+    .then((res) => {
+      if (res.status === 'deleted') {
+        this.props.history.push('/gallery')
+      }
+    });
   }
 
   render() {

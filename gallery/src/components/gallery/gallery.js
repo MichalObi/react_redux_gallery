@@ -3,7 +3,7 @@ import GalleryItem from '../gallery-item/gallery-item.js'
 import '../../styles/gallery.css';
 
 class Gallery extends Component {
-  state = {gallery: []}
+  state = {gallery: []};
 
   getGalleryItems() {
     fetch('/gallery')
@@ -13,10 +13,20 @@ class Gallery extends Component {
 
   addNewGaleryItem() {
     var data = {description: 'user created item'};
-    var request = new XMLHttpRequest();
-    request.open('POST', '/gallery/create', true);
-    request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    request.send(data);
+    fetch('/gallery/create', {
+      method: 'POST',
+      body: data,
+      headers: {
+        'content-type': 'application/json',
+        'charset': 'UTF-8'
+      }
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.status === 'created') {
+        this.getGalleryItems();
+      }
+    })
   }
 
   componentDidMount() {
@@ -31,7 +41,7 @@ class Gallery extends Component {
           <GalleryItem gallery={this.state.gallery}/>
         </div>
         <div className="gallery__buttons">
-          <button onClick={this.addNewGaleryItem}>Add new gallery item</button>
+          <button onClick={this.addNewGaleryItem.bind(this)}>Add new gallery item</button>
         </div>
       </div>
     );

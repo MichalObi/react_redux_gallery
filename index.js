@@ -23,29 +23,31 @@ app.get('/gallery/item/:id', (req, res) => {
 });
 
 app.post('/gallery/create', (req, res) => {
-  var lastGalleryItemId = dumpGalleryArray.slice(-1)[0].id + 1;
+  function getNewElementId() {
+    return dumpGalleryArray.length > 0 ? dumpGalleryArray.slice(-1)[0].id + 1 : 1;
+  }
+  var lastGalleryItemId = getNewElementId();
   var newGalleryObj = {
     id: lastGalleryItemId,
     description: 'test' + ' ' + lastGalleryItemId
   };
   dumpGalleryArray.push(newGalleryObj);
-  res.json(dumpGalleryArray);
+  res.json({status: 'created'});
 });
 
 app.delete('/gallery/item/:id', (req, res) => {
   var reqId = req.params.id;
 
-  function getGalleryItem(item) {
+  function filterItemToDelete(item) {
     return parseInt(item.id) !== parseInt(reqId);
   }
 
-  dumpGalleryArray = dumpGalleryArray.filter(getGalleryItem);
-  console.log('dumpGalleryArray', dumpGalleryArray);
-  res.json();
+  dumpGalleryArray = dumpGalleryArray.filter(filterItemToDelete);
+  res.json({status: 'deleted'});
 });
 
-app.put('update:id', (req, res) => {
-  res.send('item updated');
+app.put('/gallery/item/:update:id', (req, res) => {
+  res.json({status: 'updated'});
 });
 
 app.get('*', (req, res) => {
