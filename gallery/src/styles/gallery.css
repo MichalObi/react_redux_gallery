@@ -57,3 +57,13 @@
 .main-header a {
   text-decoration: none;
 }
+
+.gallery__buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.gallery__buttons button {
+  height: 20px;
+  margin: 0 5px;
+}

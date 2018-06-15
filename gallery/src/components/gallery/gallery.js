@@ -5,10 +5,22 @@ import '../../styles/gallery.css';
 class Gallery extends Component {
   state = {gallery: []}
 
-  componentDidMount() {
+  getGalleryItems() {
     fetch('/gallery')
       .then(res => res.json())
       .then(gallery => this.setState({gallery}));
+  }
+
+  addNewGaleryItem() {
+    var data = {description: 'user created item'};
+    var request = new XMLHttpRequest();
+    request.open('POST', '/gallery/create', true);
+    request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    request.send(data);
+  }
+
+  componentDidMount() {
+    this.getGalleryItems();
   }
 
   render() {
@@ -18,7 +30,9 @@ class Gallery extends Component {
         <div className="gallery">
           <GalleryItem gallery={this.state.gallery}/>
         </div>
-        <button>Add new gallery item</button>  
+        <div className="gallery__buttons">
+          <button onClick={this.addNewGaleryItem}>Add new gallery item</button>
+        </div>
       </div>
     );
   }
