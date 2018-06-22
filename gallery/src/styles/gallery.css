@@ -32,8 +32,14 @@
 
 .gallery__item-details {
   width: 300px;
-  height: 300px;
-  margin: 50px auto;
+  height: 50px;
+  margin: 0 auto;
+}
+
+.gallery__edit {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .gallery__item-details span {

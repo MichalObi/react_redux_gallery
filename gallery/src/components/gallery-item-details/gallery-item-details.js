@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
+import GalleryItemDetailsEdit from '../gallery-item-details-edit/gallery-item-details-edit.js';
 
 class GalleryItemDetails extends Component {
-  state = {details: {}}
+  state = {details: {}, showEditComponent: false}
 
   componentDidMount() {
     fetch(`/gallery/item/${this.props.match.params.id}`)
       .then(res => res.json())
       .then(details => this.setState({details}));
+  }
+
+  editGalleryItem(id) {
+    this.setState({showEditComponent: true});
   }
 
   removeGalleryItem(id) {
@@ -34,10 +39,11 @@ class GalleryItemDetails extends Component {
           <span>{id}</span>
           <p>{this.state.details.description}</p>
           <div className="gallery__buttons">
-            <button>Edit</button>
+            <button onClick={() => this.editGalleryItem(id)}>Edit</button>
             <button onClick={() => this.removeGalleryItem(id)}>Remove</button>
           </div>
         </div>
+        { this.state.showEditComponent ? <GalleryItemDetailsEdit /> : null }
       </div>
     );
   }
