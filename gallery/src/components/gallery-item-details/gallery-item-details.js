@@ -43,7 +43,7 @@ class GalleryItemDetails extends Component {
             <button onClick={() => this.removeGalleryItem(id)}>Remove</button>
           </div>
         </div>
-        { this.state.showEditComponent ? <GalleryItemDetailsEdit /> : null }
+        { this.state.showEditComponent ? <GalleryItemDetailsEdit itemId={id}/> : null }
       </div>
     );
   }

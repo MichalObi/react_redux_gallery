@@ -1,5 +1,10 @@
 var express = require('express');
+var bodyParser = require('body-parser');
+
 var app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 
 var dumpGalleryArray = [
   {id:1, description: 'test 1'},
@@ -46,7 +51,20 @@ app.delete('/gallery/item/:id', (req, res) => {
   res.json({status: 'deleted'});
 });
 
-app.put('/gallery/item/:update:id', (req, res) => {
+app.put('/gallery/item/update/:id', (req, res) => {
+  var reqId = req.params.id;
+  var newDesc = req.body.newDesc;
+
+  function updateGalleryItemTitle(item) {
+    if (parseInt(item.id) === parseInt(reqId)) {
+      item.description = newDesc;
+      return item;
+    } else {
+      return item;
+    }
+  }
+
+  dumpGalleryArray = dumpGalleryArray.map(updateGalleryItemTitle);
   res.json({status: 'updated'});
 });
 
